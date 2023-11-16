@@ -12,8 +12,8 @@
 
 ActiveRecord::Schema[7.1].define(version: 2023_11_16_192202) do
   create_table "assets", force: :cascade do |t|
-    t.integer "house_id", null: false
-    t.integer "car_id", null: false
+    t.integer "house_id"
+    t.integer "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "assetable_type", null: false
