@@ -67,3 +67,4 @@ group :test do
 end
 
 gem 'rails-erd', group: :development 
+gem 'factory_bot_rails'
