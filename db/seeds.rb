@@ -1,5 +1,15 @@
-ActiveRecord::Base.transaction do
-  car = FactoryBot.create(:car)
-  Asset.create!(assetable: car, car: car)
+def t(&block)
+  ActiveRecord::Base.transaction do
+    yield
+  end
 end
-puts Car.count
+
+t {
+  car = FactoryBot.create(:car)
+  asset = Asset.create!(assetable: car, car: car)
+  Transaction.create!(asset: asset)
+}
+
+puts "Assets: #{Asset.count}"
+puts "Cars: #{Car.count}"
+puts "Transactions: #{Transaction.count}"
