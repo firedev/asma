@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_16_185244) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_16_192202) do
   create_table "assets", force: :cascade do |t|
     t.integer "house_id", null: false
     t.integer "car_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "assetable_type", null: false
+    t.integer "assetable_id", null: false
+    t.index ["assetable_type", "assetable_id"], name: "index_assets_on_assetable"
     t.index ["car_id"], name: "index_assets_on_car_id"
     t.index ["house_id"], name: "index_assets_on_house_id"
   end
