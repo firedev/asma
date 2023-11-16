@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_16_183523) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_16_185244) do
   create_table "assets", force: :cascade do |t|
     t.integer "house_id", null: false
     t.integer "car_id", null: false
@@ -20,6 +20,26 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_183523) do
     t.index ["house_id"], name: "index_assets_on_house_id"
   end
 
+  create_table "cars", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "houses", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "asset_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asset_id"], name: "index_transactions_on_asset_id"
+  end
+
   add_foreign_key "assets", "cars"
   add_foreign_key "assets", "houses"
+  add_foreign_key "transactions", "assets"
 end
